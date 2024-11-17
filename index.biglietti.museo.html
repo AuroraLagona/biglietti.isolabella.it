@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Acquista Biglietti - Isola Bella</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Collega il tuo file CSS -->
+</head>
+<body>
+    <!-- Header -->
+    <header id="header-biglietti">
+        <div class="container">
+            <h1>Acquista Biglietti per Isola Bella</h1>
+            <p>Visita l'Isola Bella, uno dei luoghi più belli e iconici della Sicilia. Prenota il tuo biglietto per un'esperienza indimenticabile.</p>
+        </div>
+    </header>
+
+    <!-- Sezione Biglietti -->
+    <section id="section-info-biglietti" class="section-biglietti">
+        <div class="container">
+            <h2 class="title-info-biglietti">Scegli il tuo Biglietto</h2>
+            <div class="ticket-options">
+                <div class="ticket-card">
+                    <h3>Biglietto Singolo</h3>
+                    <p>Un biglietto per una sola persona, valido per un giorno.</p>
+                    <p><strong>€5.00</strong></p>
+                    <button class="btn-seleziona" data-biglietto="singolo">Seleziona</button>
+                </div>
+
+                <div class="ticket-card">
+                    <h3>Biglietto Ridotto</h3>
+                    <p>Biglietto valido per una famiglia (fino a 4 persone) per un giorno.</p>
+                    <p><strong>€2.50</strong></p>
+                    <button class="btn-seleziona" data-biglietto="famiglia">Seleziona</button>
+                </div>
+
+                <div class="ticket-card">
+                    <h3>Biglietto Studente</h3>
+                    <p>Biglietto valido per gruppi di almeno 10 persone, con accesso prioritario.</p>
+                    <p><strong>€2,50</strong></p>
+                    <button class="btn-seleziona" data-biglietto="gruppo">Seleziona</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione Checkout -->
+    <section id="section-checkout-biglietti" class="section-biglietti" style="display: none;">
+        <div class="container">
+            <h2 class="title-checkout-biglietti">Completa il tuo Acquisto</h2>
+            <form action="processa_acquisto.php" method="POST" id="form-checkout">
+                <div class="form-group">
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" id="nome" name="nome" required placeholder="Inserisci il tuo nome" />
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required placeholder="Inserisci la tua email" />
+                </div>
+
+                <div class="form-group">
+                    <label for="biglietto">Tipo di Biglietto:</label>
+                    <select name="biglietto" id="biglietto" required>
+                        <option value="singolo">Biglietto Singolo - €5.00</option>
+                        <option value="famiglia">Biglietto Ridotto- €2.50</option>
+                        <option value="gruppo">Biglietto Studente - €2.50</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="data-visita">Data della Visita:</label>
+                    <input type="date" id="data-visita" name="data_visita" required />
+                </div>
+
+                <h3>Metodo di Pagamento</h3>
+
+                <div class="form-group">
+                    <label for="carta">Numero di Carta:</label>
+                    <input type="text" id="carta" name="carta" required placeholder="Numero della tua carta" />
+                </div>
+
+                <div class="form-group">
+                    <label for="scadenza">Data di Scadenza:</label>
+                    <input type="month" id="scadenza" name="scadenza" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv" name="cvv" required placeholder="Codice di sicurezza (CVV)" />
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="accetto" required />
+                        Accetto i <a href="index.termini&condizioni.html">termini e condizioni</a> e la <a href="index.policy&privacy.html">politica sulla privacy</a>.
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn-acquista">Completa l'Acquisto</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Sezione Informazioni Aggiuntive -->
+    <section id="section-info-extra" class="section-biglietti">
+        <div class="container">
+            <h2 class="title-info-extra">Informazioni Aggiuntive</h2>
+            <p>Assicurati di portare con te il biglietto elettronico che riceverai dopo l'acquisto, e di seguire le indicazioni per raggiungere il punto di ingresso dell'Isola Bella.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer-biglietti">
+        <div class="container">
+            <p>&copy; 2024 Isola Bella. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <!-- Script JS per mostrare il modulo di checkout -->
+    <script>
+        const btnSeleziona = document.querySelectorAll('.btn-seleziona');
+        const sectionCheckout = document.getElementById('section-checkout-biglietti');
+        const selectBiglietto = document.getElementById('biglietto');
+
+        btnSeleziona.forEach((button) => {
+            button.addEventListener('click', () => {
+                // Mostra il modulo di checkout
+                sectionCheckout.style.display = 'block';
+
+                // Imposta automaticamente il tipo di biglietto selezionato nel modulo
+                const tipoBiglietto = button.getAttribute('data-biglietto');
+                selectBiglietto.value = tipoBiglietto;
+            });
+        });
+    </script>
+</body>
+</html>
